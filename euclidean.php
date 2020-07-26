@@ -8,6 +8,7 @@ function euclidean($m, $n) {
 		$m = $n;
 		$n = $r;
 	}
+	/*
 	$d = 0;
 	while ($d >= 0) {
 		$d = $m % $n;
@@ -19,5 +20,10 @@ function euclidean($m, $n) {
 		$n = $d;
 	}
 	return $ans;
+	 */
+	if ($n == 0) {
+		return $m;
+	}
+	return euclidean($n, $m % $n);
 }
-echo euclidean($m, $n);
+echo euclidean($n, $m);
