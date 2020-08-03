@@ -1,4 +1,16 @@
 <?php
+/*
+ * 500円玉をA枚
+ * 100円玉をB枚
+ * 50円玉をC枚
+ * 持っているとき硬貨の中から何枚か選び合計金額をちょうど0にする方法は
+ * 何通りあるか調べよ
+ * 但し同じ種類の硬貨同士は区別できない
+ * 0<=A,B,C<=50
+ * A+B+C>=1
+ * 50<=X<=20000
+ * X%50==0
+ */
 $five_hund_num = (int)fgets(STDIN);
 $one_hund_num = (int)fgets(STDIN);
 $fifty_num = (int)fgets(STDIN);
