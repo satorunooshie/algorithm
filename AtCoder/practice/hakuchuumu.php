@@ -7,6 +7,7 @@
  * 1<=S<=10^5
  */
 $string = trim(fgets(STDIN));
+fscanf(STDIN, "%s", $s);
 $string = str_replace('eraser', '', $string);
 $string = str_replace('erase', '', $string);
 $string = str_replace('dreamer', '', $string);
@@ -16,3 +17,4 @@ if ($string == '') {
 } else {
 	echo "NO";
 }
+//echo ($string == '') ? 'NO' : 'YES';
