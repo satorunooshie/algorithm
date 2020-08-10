@@ -42,4 +42,20 @@ for ($i = 0; $i < count($gacha); $i++) {
 		break;
 	}
 }
-	var_dump($hitRand);
+var_dump($hitItem);
+//新カード追加
+$sumRate = 0;
+foreach ($gacha as $v) {
+	$sumRate += $v['percent'];
+}
+$hitRand = rand(0, $sumRate);
+echo $hitRand . "\n";
+$tmpRate = 0;
+for ($i = 0; $i < count($gacha); $i++) {
+	$tmpRate += $gacha[$i]['percent'];
+	$hitItem = $gacha[$i];
+	if ($hitRand < $tmpRate) {
+		break;
+	}
+}
+var_dump($hitItem);
