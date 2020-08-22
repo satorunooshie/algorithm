@@ -18,6 +18,14 @@ $time = "01:00:00";
 $mult = 3;
 echo multipleTime($time, $mult);
  */
+require_once '../vendor/autoload.php';
+use Carbon\Carbon;
+//date_default_timezone_set('Asia/Tokyo');
+
+$now = Carbon::now('Asia/Tokyo');
+var_dump($now);
+$now = date('Ymd', strtotime($now));
+var_dump($now);
 function multipleTimeMoney($time) {
 	define('WAGE', 1050);
 	$times = explode(':', $time);
