@@ -3,7 +3,7 @@ fun main(args: Array<String>) {
     val n = readLine()?.toInt() ?: return
     var c: Pair<Long, Long>? = null
     var count = 1
-    0.util(n).map {
+    0.until(n).map {
         val (x, l) = longList()
         Pair(x - l, x + l)
     }
