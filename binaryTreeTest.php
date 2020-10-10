@@ -18,7 +18,7 @@ BinaryTree::insertNode(10, $tree);
 BinaryTree::insertNode(200, $tree);
 BinaryTree::insertNode(400, $tree);
 echo "\n";
-var_dump($tree);
+print_r($tree);
 echo "\n";
 echo "ここから検索テスト";
 var_dump(BinaryTree::find(1000, $tree));
