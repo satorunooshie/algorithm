@@ -9,7 +9,7 @@
 */
 
 $x = 100;
-function eratothenes($x) {
+function eratosthenes($x) {
 	$sqrt = floor(sqrt($x));
 	$lists = array_fill(2, $x -1, true);
 	for ($i = 2; $i <= $sqrt; $i++) {
@@ -21,7 +21,7 @@ function eratothenes($x) {
 	}
 	return array_keys($lists);
 }
-print_r(eratothenes($x));
+print_r(eratosthenes($x));
 //--------------------------------------------------
 $i = null;
 $m = null;

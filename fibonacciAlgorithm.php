@@ -16,11 +16,8 @@ echo "\n";
 echo 'getFibByMemo(100)の答えは' . getFibByMemo(100);
 
 function getFIb($n) {
-	if ($n = 0) {
-		return 1;
-	}
-	if ($n = 1) {
-		return 2;
+	if ($n < 3) {
+		return $n;
 	}
 	return getFib($n - 1) + getFib($n - 2);
 }
@@ -28,11 +25,8 @@ function getFIb($n) {
 $memo = array();
 function getFibByMemo($n) {
 	global $memo;
-	if ($n = 0) {
-		return 1;
-	}
-	if ($n = 1) {
-		return 2;
+	if ($n < 3) {
+		return $n;
 	}
 	if (isset($memo[$n])) {
 		return $memo[$n];
