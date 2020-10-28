@@ -22,7 +22,7 @@ class BinaryTree {
 			} else {
 				//左のノードにデータを挿入
 				$node->leftNode = self::createNewNode($value);
-				return true;
+				return true;
 			}
 		} else {
 			//ノードの値より大きいとき、右のこのノードに
