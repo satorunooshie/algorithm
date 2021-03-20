@@ -6,7 +6,7 @@ import java.util.Scanner;
  * The type Chain hash tester 2.
  * 氏名をキー値にした
  */
-public class chainHashTester2 {
+public class ChainHashTester2 {
     /**
      * The Std in.
      */
