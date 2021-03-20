@@ -67,6 +67,13 @@ class PhysicalExamination {
         System.out.println("\n視力の分布");
         for (int i = 0; i < VMAX; i++)
             System.out.printf("%3.1f~: %2d人\n", i / 10.0, vdist[i]);
+        System.out.println("\n視力の分布を表したグラフ");
+        for (int i = 0; i < VMAX; i++) {
+            System.out.printf("%3.1f~: ", i / 10.0);
+            for (int j = 0; j < vdist[i]; j++)
+                System.out.print('*');
+            System.out.println();
+        }
     }
 
     /**
