@@ -25,7 +25,7 @@ class MergeSort {
      * @param right ソート対象の末尾要素のインデックス
      */
     static void __mergeSort(int[] array, int left, int right) {
-        if (left > right) {
+        if (left < right) {
             int center = (left + right) / 2;
             int i, p, j;
             p = j = 0;
