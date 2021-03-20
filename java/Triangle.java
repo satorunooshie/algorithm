@@ -1,6 +1,16 @@
+package java;
+
 import java.util.Scanner;
 
+/**
+ * The type Triangle.
+ */
 public class Triangle {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         /*
         Scanner stdIn = new Scanner(System.in);
@@ -32,7 +42,13 @@ public class Triangle {
         System.out.println("右下側が直角の二等辺三角形");
         triangleRB(n);
     }
-    //左下側が直角の二等辺三角形
+
+    /**
+     * Triangle lb.
+     *
+     * @param n the n
+     */
+//左下側が直角の二等辺三角形
     static void triangleLB(int n) {
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= i; j++)
@@ -40,7 +56,13 @@ public class Triangle {
             System.out.println();
         }
     }
-    //左上側が直角の二等辺三角形
+
+    /**
+     * Triangle lu.
+     *
+     * @param n the n
+     */
+//左上側が直角の二等辺三角形
     static void triangleLU(int n) {
         for (int i = 1; i <= n; i++) {
             for (int j = n; j >= i; j--)
@@ -48,7 +70,13 @@ public class Triangle {
             System.out.println();
         }
     }
-    //右上側が直角の二等辺三角形
+
+    /**
+     * Triangle ru.
+     *
+     * @param n the n
+     */
+//右上側が直角の二等辺三角形
     static void triangleRU(int n) {
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= i - 1; j++)
@@ -58,7 +86,13 @@ public class Triangle {
             System.out.println();
         }
     }
-    //右下側が直角の二等辺三角形
+
+    /**
+     * Triangle rb.
+     *
+     * @param n the n
+     */
+//右下側が直角の二等辺三角形
     static void triangleRB(int n) {
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n - i; j++)
