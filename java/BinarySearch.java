@@ -20,7 +20,7 @@ class BinarySearch {
      * 探索失敗時はceiling(log(n+1))となり、探索成功時はlog(n-1)となる
      * ceilingは天井関数で、x以上の最小の整数を表す
      */
-    static int binarySearch(int[] a, int n, int key) {
+    static int binarySearch1(int[] a, int n, int key) {
         int pl = 0;
         int pr = n - 1;
         do {
@@ -55,7 +55,7 @@ class BinarySearch {
         }
         System.out.print("探す値:");
         int key = stdIn.nextInt();
-        int index = binarySearch(x, num, key);
+        int index = binarySearch1(x, num, key);
         if (index == -1)
             System.out.println("その値の要素は存在しません");
         else
@@ -165,6 +165,67 @@ class BinarySearch {
     }
 
     /**
+     * Binary search test 4.
+     */
+    static void binarySearchTest4() {
+        Scanner stdIn = new Scanner(System.in);
+        System.out.print("要素数:");
+        int num = stdIn.nextInt();
+        int[] x = new int[num];
+        System.out.println("昇順に入力してください");
+        System.out.print("x[0]:");
+        x[0] = stdIn.nextInt();
+        for (int i = 1; i < num; i++) {
+            do {
+                System.out.print("x[" + i + "]:");
+                x[i] = stdIn.nextInt();
+            } while (x[i] < x[i - 1]);
+        }
+        System.out.print("探す値:");
+        int key = stdIn.nextInt();
+        int index = binarySearch2(x, num, key);
+        if (index == -1)
+            System.out.println("その値の要素は存在しません");
+        else
+            System.out.println("その値はx[" + index + "]にあります");
+    }
+
+    /**
+     * Binary search 2 int.
+     *
+     * @param a   the a
+     * @param n   the n
+     * @param key the key
+     * @return the int
+     */
+    /*
+     * 2分探索では探索すべきキー値と同じ値を持つ要素が複数存在する場合、それらの要素の先頭要素を見つけるとは限らない
+     * 例えば、配列の中央値より前にキー値があっても中央値にキー値と同じ値があればそのインデックスを返してしまう
+     * しかし、探索に成功した場合に、その位置から先頭側へ一つずつ走査すれば、複数の要素が一致する場合でも最も先頭側に位置する要素のインデックスを見つけられる
+     */
+    static int binarySearch2(int[] a, int n, int key) {
+        int pl = 0;
+        int pr = n - 1;
+        do {
+            //center
+            int pc = (pl + pr) / 2;
+            if (a[pc] == key) {
+                for (; pc > pl; pc--)
+                    // keyと等しい先頭の要素を探索
+                    if (a[pc - 1] < key)
+                        break;
+                return pc;
+                //後半に絞る
+            } else if (a[pc] < key)
+                pl = pc + 1;
+                //前半に絞る
+            else
+                pr = pc - 1;
+        } while (pl <= pr);
+        return -1;
+    }
+
+    /**
      * The entry point of application.
      *
      * @param args the input arguments
@@ -173,5 +234,6 @@ class BinarySearch {
         binarySearchTest1();
         binarySearchTest2();
         binarySearchTest3();
+        binarySearchTest4();
     }
 }
