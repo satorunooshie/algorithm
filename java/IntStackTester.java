@@ -1,9 +1,20 @@
+package java;
+
 import java.util.Scanner;
 
+/**
+ * The type Int stack tester.
+ * NEED: IntStack.class
+ */
 class IntStackTester {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         Scanner stdIn = new Scanner(System.in);
-        //max64個プッシュできるスタック
+        // max64個プッシュできるスタック
         IntStack s = new IntStack(64);
         while (true) {
             System.out.printf("現在のデータ数: %d / %d\n", s.size(), s.getCapacity());
