@@ -19,21 +19,42 @@ class Pyramid {
             System.out.print("n:");
             n = stdIn.nextInt();
         } while (n <= 0);
-        pyramid(n);
+        pyramidOfStars(n);
+        pyramidOfNumbers(n);
     }
 
     /**
-     * Pyramid.
+     * 星でピラミッドを表現
      *
      * @param n the n
      */
-    static void pyramid(int n) {
+    static void pyramidOfStars(int n) {
         for (int i = 1; i <= n; i++) {
-            int space_cnt = (n - i) / 2;
-            System.out.print(" ".repeat(space_cnt));
-            System.out.print("*".repeat(i));
-            System.out.println(" ".repeat(space_cnt));
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= (i - 1) * 2 + 1; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
         }
         System.out.println();
+    }
+
+    /**
+     * 数字でピラミッドを表現
+     *
+     * @param n the n
+     */
+    static void pyramidOfNumbers(int n) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= (i - 1) * 2 + 1; j++) {
+                System.out.print(i % 10);
+            }
+            System.out.println();
+        }
     }
 }
