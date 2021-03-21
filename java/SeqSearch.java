@@ -1,6 +1,11 @@
+package java;
+
 import java.util.Scanner;
 
 /**
+ * The type Seq search.
+ */
+/*
  * 線形検索
  * 逐次検索
  *
@@ -26,6 +31,14 @@ import java.util.Scanner;
  * ある目的に対して複数のアルゴリズムが存在する場合は用途や目的、実行速度、対象となるデータ構造などを考慮してアルゴリズムを選択する
  */
 class SeqSearch {
+    /**
+     * Seq search int.
+     *
+     * @param a   the a
+     * @param n   the n
+     * @param key the key
+     * @return the int
+     */
     static int seqSearch(int[] a, int n, int key) {
         /*
         無限ループ
@@ -48,9 +61,13 @@ class SeqSearch {
         }
          */
     }
+
+    /**
+     * Seq search trace.
+     */
     public static void seqSearchTrace() {
         Scanner stdIn = new Scanner(System.in);
-        int[] array = { 85, 389, 20, 348, 38, 84, 22, 48, 95, 34, 59, 28, 55, 99 };
+        int[] array = {85, 389, 20, 348, 38, 84, 22, 48, 95, 34, 59, 28, 55, 99};
         int x, pos, i;
         System.out.print("探す値:");
         x = stdIn.nextInt();
@@ -64,6 +81,12 @@ class SeqSearch {
         System.out.printf("pos = %d\n", pos);
         System.out.printf("ループの後: pos = %d, \ti = %d\n", pos, i);
     }
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         Scanner stdIn = new Scanner(System.in);
         System.out.print("要素数:");
