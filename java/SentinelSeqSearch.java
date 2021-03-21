@@ -1,17 +1,37 @@
+package java;
+
 import java.util.Scanner;
 
+/**
+ * The type Sentinel seq search.
+ */
 class SentinelSeqSearch {
+    /**
+     * Sentinel search int.
+     *
+     * @param a   the a
+     * @param n   the n
+     * @param key the key
+     * @return the int
+     */
     static int sentinelSearch(int[] a, int n, int key) {
         int i = 0;
         a[n] = key;
-        while (true) {
-            if (a[i] == key)
-                break;
+        while (a[i] != key) {
             i++;
         }
+        /* for version
+        for (i = 0; a[i] != key; i++)
+            ;
+         */
         return i == n ? -1 : i;
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         Scanner stdIn = new Scanner(System.in);
         System.out.print("要素数は:");
