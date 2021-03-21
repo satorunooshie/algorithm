@@ -1,5 +1,10 @@
+package java;
+
 import java.util.Scanner;
 
+/**
+ * The type Euclid gcd.
+ */
 class EuclidGCD {
     /**
      * 二つの整数値が与えられたとき、大きい方の値を小さい方の値で割ってみて
@@ -15,7 +20,11 @@ class EuclidGCD {
      *
      * 他の解法
      * 整数の大きい方から小さい方を引くことを両者が等しくなるまで繰り返す
-     * 等しくなた値が最大公約数
+     * 等しくなった値が最大公約数
+     *
+     * @param x the x
+     * @param y the y
+     * @return the int
      */
     static int gcd1(int x, int y) {
         if (y == 0)
@@ -23,6 +32,14 @@ class EuclidGCD {
         else
             return gcd1(y, x % y);
     }
+
+    /**
+     * Gcd 2 int.
+     *
+     * @param x the x
+     * @param y the y
+     * @return the int
+     */
     static int gcd2(int x, int y) {
         while (x != y) {
             if (x > y)
@@ -32,6 +49,12 @@ class EuclidGCD {
         }
         return x;
     }
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         Scanner stdIn = new Scanner(System.in);
         System.out.println("二つの整数の最大公約数を求める");
