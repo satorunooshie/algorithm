@@ -116,6 +116,20 @@ public class IntQueue {
     }
 
     /**
+     * Search int.
+     *
+     * @param x the x
+     * @return the int
+     */
+    // キューからxを探して先頭から何番目か
+    public int search(int x) {
+        for (int i = 0; i < num; i++)
+            if (que[(i + front) % capacity] == x)
+                return i + 1;
+        return 0;
+    }
+
+    /**
      * Gets capacity.
      *
      * @return the capacity
