@@ -84,7 +84,7 @@ public class IntQueue {
      * @return the int
      * @throws EmptyIntQueueException the empty int queue exception
      */
-// 次のデキューで取り出されるデータを覗き見するメソッドでデータの取り出しは行わないので値は更新しない
+    // 次のデキューで取り出されるデータを覗き見するメソッドでデータの取り出しは行わないので値は更新しない
     public int peek()
             throws EmptyIntQueueException {
         if (isEmpty())
@@ -95,7 +95,7 @@ public class IntQueue {
     /**
      * Clear.
      */
-// エンキューとデキューはnumとfrontとrearの値に基づいて行われるので本体用の配列要素の値の変更は不要
+    // エンキューとデキューはnumとfrontとrearの値に基づいて行われるので本体用の配列要素の値の変更は不要
     public void clear() {
         num = front = rear = 0;
     }
@@ -106,7 +106,7 @@ public class IntQueue {
      * @param x the x
      * @return the int
      */
-// 先頭から末尾側へと線形探索(キューとしての論理的な先頭要素から)
+    // 先頭から末尾側へと線形探索(キューとしての論理的な先頭要素から)
     public int indexOf(int x) {
         for (int i = 0; i < num; i++) {
             int index = (i + front) % capacity;
