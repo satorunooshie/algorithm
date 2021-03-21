@@ -1,13 +1,30 @@
+package java;
+
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * The type Max of array rand.
+ */
 class MaxOfArrayRand {
+    /**
+     * Max int.
+     *
+     * @param a the a
+     * @return the int
+     */
     static int max(int[] a) {
         int max = a[0];
         for (int i = 1; i < a.length; i++)
             if (a[i] > max) max = a[i];
         return max;
     }
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         Random rand = new Random();
         Scanner stdIn = new Scanner(System.in);
