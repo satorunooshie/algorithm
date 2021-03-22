@@ -16,16 +16,16 @@ class EightQueen {
     /**
      * The constant pos.
      */
-    // 各行の王妃の位置
+// 各行の王妃の位置
     static int[] pos = new int[8];
     /**
      * [方針2]
      * 各行には王妃を一個だけ配置
-     * (8飛車問題) *王妃が行方向と列方向に重複しない組み合わせを列挙するので
+     * (8飛車問題) 王妃が行方向と列方向に重複しない組み合わせを列挙するので
      * 必要のない枝分かれを制御して不要な組み合わせの列挙を省くので限定操作という
      * 分岐操作と限定操作を組み合わせて解くのが分岐限定法
      */
-    // 同一行に重複して王妃を配置しないようにするために設置
+// 同一行に重複して王妃を配置しないようにするために設置
     // j行目に王妃が配置済みであればflag[j]をtrueとし、未配置であればfalseとする
     static boolean[] flag = new boolean[8];
     /**
@@ -41,7 +41,7 @@ class EightQueen {
     /**
      * The constant set_r_diagonal.
      */
-    // 対角線／に王妃が配置済みか
+// 対角線／に王妃が配置済みか
     static boolean[] set_r_diagonal = new boolean[15];
 
     // static int[] pos = new int[8];
@@ -49,13 +49,13 @@ class EightQueen {
     /**
      * The constant set_l_diagonal.
      */
-    // 対角線\に王妃が配置済みか
+// 対角線\に王妃が配置済みか
     static boolean[] set_l_diagonal = new boolean[15];
 
     /**
      * Print.
      */
-    // 各列の王妃の位置を出力
+// 各列の王妃の位置を出力
     static void print() {
         for (int i = 0; i < 8; i++)
             System.out.printf("%2d", pos[i]);
@@ -160,6 +160,46 @@ class EightQueen {
     }
 
     /**
+     * Sets without recur.
+     *
+     * FIXME:
+     *
+     * @param i the
+     */
+    static void setWithoutRecur(int i) {
+        int j;
+        int[] jstk = new int[8];
+        Start:
+        while (true) {
+            j = 0;
+            while (true) {
+                while (j < 8) {
+                    if (!set_line[j] &&
+                            !set_r_diagonal[i + j] &&
+                            !set_l_diagonal[i - j + 7]) {
+                        pos[i] = j;
+                        // 全列に配置終了
+                        if (i == 7)
+                            printSignal();
+                        else {
+                            // i列目の行をpush
+                            set_line[j] = set_r_diagonal[i + j] = set_l_diagonal[i - j + 7] = true;
+                            jstk[i++] = j;
+                            continue Start;
+                        }
+                    }
+                    j++;
+                }
+                if (--i == -1) return;
+                // i行目の列をpop
+                j = jstk[i];
+                set_line[j] = set_r_diagonal[i + j] = set_l_diagonal[i - j + 7] = false;
+                j++;
+            }
+        }
+    }
+
+    /**
      * The entry point of application.
      *
      * @param args the input arguments
@@ -169,5 +209,6 @@ class EightQueen {
         // set1(0);
         // set2(0);
         set3(0);
+        // setWithoutRecur(0);
     }
 }
