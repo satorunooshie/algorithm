@@ -118,6 +118,32 @@ public class BubbleSortFlow {
     }
 
     /**
+     * 単純選択ソート
+     * 未ソート部分から最小の要素を選択して未ソート部分の先頭要素と交換する操作を繰り返す
+     * (n^2 - n) / 2
+     * 離れた要素を交換するため安全ではない
+     *
+     * @param array the array
+     * @param n     the n
+     */
+    static void selectionSort(int[] array, int n) {
+        for (int i = 0; i < n - 1; i++) {
+            int min = i;
+            for (int j = i + 1; j < n; j++)
+                if (array[j] < array[min])
+                    min = j;
+            for (int m = 0; m < n; m++)
+                System.out.print((m == i) ? "  * " : (m == min) ? "  + " : "    ");
+            System.out.println();
+            for (int m = 0; m < n; m++)
+                System.out.printf("%3d ", array[m]);
+            System.out.println("\n");
+            // 未ソート部分の先頭要素と最小要素を交換
+            swap(array, i, min);
+        }
+    }
+
+    /**
      * The entry point of application.
      *
      * @param args the input arguments
@@ -126,6 +152,7 @@ public class BubbleSortFlow {
         Scanner stdIn = new Scanner(System.in);
 
         System.out.println("単純交換ソート(バブルソート)");
+        // System.out.println("単純選択ソート");
         System.out.print("要素数: ");
         int nx = stdIn.nextInt();
         int[] x = new int[nx];
@@ -136,6 +163,7 @@ public class BubbleSortFlow {
         // bubbleSort1(x, nx);
         // bubbleSort2(x, nx);
         bubbleSort3(x, nx);
+        // selectionSort(x, nx);
         System.out.println("昇順にソートしました");
         for (int i = 0; i < nx; i++)
             System.out.println("x[" + i + "]=" + x[i]);
