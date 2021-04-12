@@ -3,9 +3,9 @@ package java;
 import java.util.Scanner;
 
 /**
- * The type Int queue tester.
+ * The type Queue tester.
  */
-class IntQueueTester {
+public class QueueTester {
     /**
      * The entry point of application.
      *
@@ -13,7 +13,8 @@ class IntQueueTester {
      */
     public static void main(String[] args) {
         Scanner stdIn = new Scanner(System.in);
-        IntQueue s = new IntQueue(64);
+        Queue<String> s = new Queue<>(64);
+
         while (true) {
             System.out.printf("現在のデータ数: %d / %d\n", s.size(), s.getCapacity());
             System.out.print("(1) enque (2) deque (3) peek (4) dump (5) search (0) terminate:");
@@ -21,29 +22,32 @@ class IntQueueTester {
             int menu = stdIn.nextInt();
             if (menu == 0) break;
 
-            int x;
+            int index;
+            String x;
+
             switch (menu) {
                 case 1:
                     System.out.print("データ:");
-                    x = stdIn.nextInt();
+                    x = stdIn.next();
                     try {
                         s.enque(x);
-                    } catch (IntQueue.OverflowIntQueueException e) {
+                    } catch (Queue.OverflowQueueException e) {
                         System.out.println("キューが満杯です");
                     }
                     break;
                 case 2:
                     try {
-                        s.deque();
-                    } catch (IntQueue.EmptyIntQueueException e) {
+                        x = s.deque();
+                        System.out.printf("デキューしたデータは%sです\n", x);
+                    } catch (Queue.EmptyQueueException e) {
                         System.out.println("キューが空です");
                     }
                     break;
                 case 3:
                     try {
                         x = s.peek();
-                        System.out.println("ピークしたデータは" + x);
-                    } catch (IntQueue.EmptyIntQueueException e) {
+                        System.out.printf("ピークしたデータは%sです\n", x);
+                    } catch (Queue.EmptyQueueException e) {
                         System.out.println("キューが空です");
                     }
                     break;
@@ -52,10 +56,10 @@ class IntQueueTester {
                     break;
                 case 5:
                     System.out.print("データ:");
-                    x = stdIn.nextInt();
-                    int n = s.search(x);
+                    String str = stdIn.next();
+                    int n = s.search(str);
                     if (n != 0)
-                        System.out.printf("%d番目のデータでインデックス%dの位置に格納されています\n", n, s.indexOf(x));
+                        System.out.printf("%d番目のデータでインデックス%dの位置に格納されています\n", n, s.indexOf(str));
                     else
                         System.out.println("そのデータは登録されていません");
                     break;

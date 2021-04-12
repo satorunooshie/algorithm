@@ -23,6 +23,7 @@ import java.util.PriorityQueue;
  * 中央値を得るにはヒープの先頭を見るだけで良いので定数時間で取得できる
  * 値の追加はO(log(n))の計算時間になる
  */
+
 public class FindMedian {
     private Comparator<Integer> maxHeapComparator;
     private Comparator<Integer> minHeapComparator;

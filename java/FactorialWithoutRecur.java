@@ -3,9 +3,9 @@ package java;
 import java.util.Scanner;
 
 /**
- * The type Factorial.
+ * The type Factorial without recur.
  */
-class Factorial {
+public class FactorialWithoutRecur {
     /**
      * Factorial int.
      *
@@ -13,10 +13,10 @@ class Factorial {
      * @return the int
      */
     static int factorial(int n) {
-        if (n > 0)
-            return n * factorial(n - 1);
-        else
-            return 1;
+        int fact = 1;
+        while (n > 1)
+            fact *= n--;
+        return fact;
     }
 
     /**
@@ -28,6 +28,6 @@ class Factorial {
         Scanner stdIn = new Scanner(System.in);
         System.out.print("整数を入力せよ:");
         int x = stdIn.nextInt();
-        System.out.println(x + "の階乗は" + factorial(x));
+        System.out.printf("%dの階乗は%dです\n", x, factorial(x));
     }
 }

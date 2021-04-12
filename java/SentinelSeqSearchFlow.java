@@ -3,28 +3,42 @@ package java;
 import java.util.Scanner;
 
 /**
- * The type Sentinel seq search.
+ * The type Sentinel seq search flow.
  */
-class SentinelSeqSearch {
+public class SentinelSeqSearchFlow {
     /**
      * Sentinel search int.
      *
-     * @param a   the a
-     * @param n   the n
-     * @param key the key
+     * @param array the array
+     * @param n     the n
+     * @param key   the key
      * @return the int
      */
-    static int sentinelSearch(int[] a, int n, int key) {
-        int i = 0;
-        a[n] = key;
-        while (a[i] != key) {
-            i++;
+    static int sentinelSearch(int[] array, int n, int key) {
+        System.out.print("   |");
+        for (int k = 0; k < n; k++) {
+            System.out.printf("%4d", k);
         }
-        /* for version
-        for (i = 0; a[i] != key; i++)
-            ;
-         */
-        return i == n ? -1 : i;
+        System.out.println();
+        System.out.print("---+");
+        for (int k = 0; k < 4 * n + 2; k++) {
+            System.out.print("-");
+        }
+        System.out.println();
+
+        for (int i = 0; i < n; i++) {
+            System.out.print("   |");
+            System.out.printf(String.format("%%%ds*\n", (i * 4) + 3), "");
+            System.out.printf("%3d|", i);
+            for (int k = 0; k < n; k++) {
+                System.out.printf("%4d", array[k]);
+            }
+            System.out.println("\n   |");
+            if (array[i] == key) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
