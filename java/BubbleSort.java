@@ -117,6 +117,41 @@ class BubbleSort {
     }
 
     /**
+     * 双方向バブルソート(シェーカーソート)
+     * 9 1 3 4 6 7 8
+     * 上のデータの並びはほぼソート済であるにもかかわらずソート作業を早期に打ち切ることはできない
+     * 先頭に位置している最大の要素9が一回ずつのパスで一つずつしか後方に移動しないためだ
+     *
+     * そこで奇数パスは最小要素を先頭側に移動させ、偶数パスでは最大要素を末尾側に移動すると言うように、
+     * パスの走査方向を交互に変えるとこのような並びのソートを少ない比較回数で行える
+     *
+     * @param array the array
+     * @param n     the n
+     */
+    static void shakerSort(int[] array, int n) {
+        int left = 0;
+        int right = n - 1;
+        int last = right;
+
+        while (left < right) {
+            for (int j = right; j > left; j--) {
+                if (array[j - 1] > array[j]) {
+                    swap(array, j - 1, j);
+                    last = j;
+                }
+            }
+            left = last;
+            for (int j = left; j < right; j++) {
+                if (array[j] > array[j + 1]) {
+                    swap(array, j, j + 1);
+                    last = j;
+                }
+            }
+            right = last;
+        }
+    }
+
+    /**
      * The entry point of application.
      *
      * @param args the input arguments
@@ -135,7 +170,8 @@ class BubbleSort {
         // bubbleSort1(x, nx);
         // bubbleSort1_reverse(x, nx);
         // bubbleSort2(x, nx);
-        bubbleSort3(x, nx);
+        // bubbleSort3(x, nx);
+        shakerSort(x, nx);
         System.out.println("昇順にソートしました");
         for (int i = 0; i < nx; i++)
             System.out.println("x[" + i + "]=" + x[i]);
