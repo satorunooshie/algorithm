@@ -1,4 +1,4 @@
-package java;
+//package java;
 
 import java.util.Scanner;
 
@@ -68,22 +68,55 @@ class InsertionSort {
     }
 
     /**
+     * 配列の先頭要素が未使用でデータがarray[1]以降に格納されていれば、
+     * array[0]を番兵とすることによって挿入処理の終了条件を緩和できる
+     *
+     * @param array the array
+     * @param n     the n
+     */
+    static void sentinelInsertionSort(int[] array, int n) {
+        for (int i = 2; i <= n; i++) {
+            int tmp = array[0] = array[i];
+            int j = i;
+            for (; array[j - 1] > tmp; j--)
+                array[j] = array[j - 1];
+            array[j] = tmp;
+        }
+    }
+
+    /**
      * The entry point of application.
      *
      * @param args the input arguments
      */
     public static void main(String[] args) {
         Scanner stdIn = new Scanner(System.in);
-        System.out.println("単純挿入ソート");
+        System.out.println("単純挿入ソート(番兵)");
 
         System.out.print("要素数:");
         int nx = stdIn.nextInt();
-        int[] x = new int[nx];
+        // 1個余分に生成
+        int[] x = new int[nx + 1];
+        // x[1] ~ x[nx]に読み込む
+        for (int i = 1; i <= nx; i++) {
+            System.out.print("x[" + i + "]:");
+            x[i] = stdIn.nextInt();
+        }
+        sentinelInsertionSort(x, nx);
+
+        System.out.println("昇順にソートしました");
+        for (int i = 1; i <= nx; i++)
+            System.out.println("x[" + i + "]=" + x[i]);
+
+        System.out.print("要素数:");
+        nx = stdIn.nextInt();
+        x = new int[nx];
         for (int i = 0; i < nx; i++) {
             System.out.print("x[" + i + "]:");
             x[i] = stdIn.nextInt();
         }
-        insertionSort(x, nx);
+        insertionSort(x, nx + 1);
+
         System.out.println("昇順にソートしました");
         for (int i = 0; i < nx; i++)
             System.out.println("x[" + i + "]=" + x[i]);
@@ -96,5 +129,9 @@ class InsertionSort {
             x[i] = stdIn.nextInt();
         }
         insertionSort(x);
+
+        System.out.println("昇順にソートしました");
+        for (int i = 0; i < nx; i++)
+            System.out.println("x[" + i + "]=" + x[i]);
     }
 }
