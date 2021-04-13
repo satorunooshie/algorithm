@@ -1,12 +1,16 @@
+package java;
+
 import java.util.Scanner;
 
-/**
+/*
  * 配列の走査を末尾側からやれば安定
  *  先頭側から走査をすると同一キー値の順序関係がソート前後で反転するから
  * 度数分布表が必要なのでデータの最小値とデータの最大値があらかじめ分かっている場合にしか適用できない
  */
 
 /**
+ * The type Counting sort.
+ *
  * 度数ソート
  * 分布数え上げソートとも呼ばれる
  * 要素の大小関係を判定することなく高速なソートを行うアルゴリズム
@@ -43,33 +47,76 @@ import java.util.Scanner;
  *      ソートが完了したと言ってもソート結果が格納されたのはtmpなのでtmpの要素をscoresにコピーし直す
  */
 class CountingSort {
+    /**
+     * Counting sort.
+     *
+     * @param array the array
+     * @param n     the n
+     * @param max   the max
+     */
     static void countingSort(int[] array, int n, int max) {
-        //度数分布及び累積度数を格納するための配列
+        // 度数分布及び累積度数を格納するための配列
         int[] freq = new int[max + 1];
-        //ソートした配列を一時的に格納するための目的配列
+        // ソートした配列を一時的に格納するための目的配列
         int[] tmp = new int[n];
 
         for (int i = 0; i < n; i++) freq[array[i]]++;
         for (int i = 1; i <= max; i++) freq[i] += freq[i - 1];
         for (int i = n - 1; i >= 0; i--) tmp[--freq[array[i]]] = array[i];
-        for (int i = 0; i < n; i++) array[i] = tmp[i];
+        // for (int i = 0; i < n; i++) array[i] = tmp[i];
+        if (n >= 0) System.arraycopy(tmp, 0, array, 0, n);
     }
+
+    /**
+     * Counting sort.
+     * 要素の値がmin以上max以下である要素数nの配列をソートする
+     *
+     * @param array the array
+     * @param n     the n
+     * @param min   the min
+     * @param max   the max
+     */
+    static void countingSort(int[] array, int n, int min, int max) {
+        // 累積度数
+        int[] freq = new int[max - min + 2];
+        int[] tmp = new int [n];
+
+        for (int i = 0; i < n; i++) freq[array[i] - min]++;
+        for (int i = 1; i <= max - min + 1; i++) freq[i] += freq[i - 1];
+        for (int i = n - 1; i >= 0; i--) tmp[--freq[array[i] - min]] = array[i];
+        if (n >= 0) System.arraycopy(tmp, 0, array, 0, n);
+    }
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         Scanner stdIn = new Scanner(System.in);
+
         System.out.println("度数ソート");
+
         System.out.print("要素数:");
         int nx = stdIn.nextInt();
         int[] x = new int[nx];
         for (int i = 0; i < nx; i++) {
-            System.out.print("x[" + i + "]:");
-            x[i] = stdIn.nextInt();
+            do {
+                System.out.print("x[" + i + "]:");
+                x[i] = stdIn.nextInt();
+            } while (x[i] < 0);
         }
 
-        //度数分布及び累積度数の要素数を決定するために配列xの最大値を求める
+        // 度数分布及び累積度数の要素数を決定するために配列xの最大値を求める
         int max = x[0];
         for (int i = 1; i < nx; i++)
             if (x[i] > max) max = x[i];
-        countingSort(x, nx, max);
+
+        int min = x[0];
+        for (int i = 1; i < nx; i++)
+            if (x[i] < min) min = x[i];
+        // countingSort(x, nx, max);
+        countingSort(x, nx, min, max);
         System.out.println("昇順にソートしました");
         for (int i = 0; i < nx; i++)
             System.out.println("x[" + i + "]=" + x[i]);
