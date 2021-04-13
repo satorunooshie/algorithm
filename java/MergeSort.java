@@ -1,6 +1,8 @@
+package java;
+
 import java.util.Scanner;
 
-/**
+/*
  * O(n log n)
  * 安定
  */
@@ -15,11 +17,16 @@ import java.util.Scanner;
  * ・配列の前半部と後半部をマージする
  */
 class MergeSort {
-    //作業用配列
+    /**
+     * The Buff.
+     */
+    // 作業用配列
     static int[] buff;
+
     /**
      * array[left] ~ array[right]を再帰的にマージソート
      * (配列前半部と後半部をそれぞれソート済みにする)(,left,center)(,center+1,right)
+     *
      * @param array ソートする配列
      * @param left  ソート対象の先頭要素のインデックス
      * @param right ソート対象の末尾要素のインデックス
@@ -30,11 +37,11 @@ class MergeSort {
             int i, p, j;
             p = j = 0;
             int k = left;
-            //前半部
+            // 前半部
             __mergeSort(array, left, center);
-            //後半部
+            // 後半部
             __mergeSort(array, center + 1, right);
-            /**
+            /*
              * 1.配列の前半部array[left] ~ array[center]をbuff[0] ~ buff[center - left]にコピー
              *   for終了時のpはコピーした要素の個数center - left + 1となる
              * 2.配列後半部array[center + 1] ~ array[right]とbuffにコピーした配列の前半部のp個をマージした結果をarrayに格納
@@ -42,13 +49,13 @@ class MergeSort {
              *
              * つまりbuffにはソートされた前半部、マージ前の配列arrayは、ソートされた後半部が入っていてそれをarrayでマージ
              */
-            //1
+            // (1)
             for (i = left; i <= center; i++)
                 buff[p++] = array[i];
-            //2
+            // (2)
             while (i <= right && j < p)
                 array[k++] = (buff[j] <= array[i]) ? buff[j++] : array[i++];
-            //3
+            // (3)
             while (j < p)
                 array[k++] = buff[j++];
         }
@@ -59,18 +66,28 @@ class MergeSort {
      * ソート作業を行うメソッド__mergeSortを呼び出す
      * 作業用配列を解放・破棄する
      *
+     * @param array the array
+     * @param n     the n
      */
     static void mergeSort(int[] array, int n) {
-        //作業用配列の作成
+        // 作業用配列の作成
         buff = new int[n];
-        //配列全体をマージソート
+        // 配列全体をマージソート
         __mergeSort(array, 0, n - 1);
-        //作業用配列を開放
+        // 作業用配列を開放
         buff = null;
     }
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         Scanner stdIn = new Scanner(System.in);
+
         System.out.println("マージソート");
+
         System.out.print("要素数:");
         int nx = stdIn.nextInt();
         int[] x = new int[nx];
